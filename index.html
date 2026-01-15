@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araratian | Հարարատյան - The Guild of Resilient Technical Genius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-argun: #f0805a;     /* Primary orange/red - passion, energy */
+            --color-kaput: #0a3069;     /* Deep blue - wisdom, trust */
+            --color-nairi: #dfecee;     /* Light stone - clarity, foundation */
+            --color-masis: #4a7b5e;     /* Mountain green - resilience, growth */
+            --color-yerevan: #ffffff;   /* White - purity, innovation */
+            --color-diaspora: #985d52;  /* Earth brown - heritage, roots */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Armenian', sans-serif;
+            color: #222;
+            background-color: var(--color-yerevan);
+            position: relative;
+            overflow-x: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Armenian font styling */
+        .arm {
+            font-family: 'Noto Sans Armenian', 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(10, 48, 105, 0.1);
+            border: 1px solid rgba(10, 48, 105, 0.1);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.2rem;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--color-kaput);
+            color: white;
+        }
+
+        /* Ararat Background */
+        .ararat-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .ararat-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, transparent, var(--color-kaput));
+            clip-path: polygon(0% 100%, 100% 100%, 80% 40%, 60% 20%, 40% 10%, 20% 20%, 0% 40%);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section - Much more prominent */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 1rem 6rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-argun), transparent);
+        }
+
+        .logo-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-main {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-argun), var(--color-kaput));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-masis);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 2rem auto 1.5rem;
+            max-width: 900px;
+            color: var(--color-kaput);
+        }
+
+        .hero-tagline .highlight {
+            color: var(--color-argun);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-tagline .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(240, 128, 90, 0.2);
+            z-index: -1;
+        }
+
+        .hero-description {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #444;
+            max-width: 800px;
+            margin: 2rem auto 3rem;
+            font-weight: 400;
+        }
+
+        /* CTA Buttons - More prominent */
+        .cta-section {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3.5rem 0;
+        }
+
+        .cta-button {
+            padding: 1.4rem 3.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-talent {
+            background: linear-gradient(135deg, var(--color-argun), #ec4848);
+            color: white;
+            box-shadow: 0 10px 30px rgba(240, 128, 90, 0.3);
+        }
+
+        .cta-talent:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(240, 128, 90, 0.4);
+        }
+
+        .cta-company {
+            background: var(--color-yerevan);
+            color: var(--color-kaput);
+            border: 3px solid var(--color-kaput);
+            box-shadow: 0 8px 25px rgba(10, 48, 105, 0.1);
+        }
+
+        .cta-company:hover {
+            transform: translateY(-5px);
+            background: var(--color-kaput);
+            color: white;
+            box-shadow: 0 15px 40px rgba(10, 48, 105, 0.2);
+        }
+
+        /* Value Propositions */
+        .values-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 5rem 0;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(223, 236, 238, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-masis);
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-kaput);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Collective Section */
+        .collective-section {
+            background: rgba(10, 48, 105, 0.03);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 5rem 0;
+            border: 1px solid rgba(10, 48, 105, 0.05);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            text-align: center;
+            color: var(--color-kaput);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Profile Grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2.2rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s ease;
+            border-top: 5px solid var(--color-argun);
+            position: relative;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(240, 128, 90, 0.15);
+        }
+
+        .profile-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--color-masis);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .profile-name {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--color-kaput);
+            margin-bottom: 0.8rem;
+            filter: blur(4px);
+            user-select: none;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-title {
+            color: var(--color-argun);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .profile-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.2rem;
+        }
+
+        .skill-tag {
+            background-color: rgba(10, 48, 105, 0.08);
+            color: var(--color-kaput);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .access-note {
+            text-align: center;
+            color: var(--color-masis);
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(74, 123, 94, 0.05);
+            border-radius: 15px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-left: 5px solid var(--color-masis);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 48, 105, 0.9);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 550px;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--color-argun);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--color-kaput);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--color-kaput);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #e1e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', 'Noto Sans Armenian', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-argun);
+            box-shadow: 0 0 0 4px rgba(240, 128, 90, 0.15);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--color-argun), #ec4848);
+            color: white;
+            width: 100%;
+            padding: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(240, 128, 90, 0.4);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, rgba(74, 123, 94, 0.1), rgba(10, 48, 105, 0.05));
+            border-left: 5px solid var(--color-masis);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-masis);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: #777;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(10, 48, 105, 0.1);
+            margin-top: 4rem;
+            background: rgba(223, 236, 238, 0.3);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-kaput);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            color: var(--color-masis);
+            font-weight: 600;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 4rem 1.5rem 3rem; }
+            .logo-main { font-size: 3.2rem; }
+            .hero-tagline { font-size: 2.2rem; }
+            .hero-description { font-size: 1.2rem; }
+            .cta-section { flex-direction: column; align-items: center; }
+            .cta-button { width: 100%; max-width: 320px; }
+            .profile-grid { grid-template-columns: 1fr; }
+            .collective-section { padding: 2.5rem 1.5rem; }
+            .modal-content { padding: 2.5rem 1.8rem; width: 95%; }
+            .language-switcher { top: 1.5rem; right: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" id="langEng">ENG</button>
+        <button class="lang-btn" id="langArm">ՀԱՅ</button>
+    </div>
+
+    <!-- Ararat Background -->
+    <div class="ararat-background">
+        <div class="ararat-silhouette"></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="logo-container">
+                <div class="logo-main">Araratian</div>
+                <div class="logo-subtitle">The Guild of Resilient Technical Genius</div>
+            </div>
+            
+            <h1 class="hero-tagline" data-eng="We connect the <span class='highlight'>elite Armenian technical minds</span> with the world's most critical projects" data-arm="Մենք կապում ենք <span class='highlight'>հայկական էլիտար տեխնիկական միտքը</span> աշխարհի ամենակարևոր նախագծերի հետ">
+                We connect the <span class="highlight">elite Armenian technical minds</span> with the world's most critical projects
+            </h1>
+            
+            <p class="hero-description" data-eng="An invitation-only collective of senior Armenian engineers, architects, and technical leaders. Built on 4,000 years of resilience. Trusted for foundational expertise in AI, fintech, and enterprise systems." data-arm="Հրավիրանքով միություն ավագ հայ ինժեներների, ճարտարապետների և տեխնիկական ղեկավարների համար: Կառուցված 4000 տարվա դիմացկունության վրա: Վստահություն հիմնարար փորձաքննության համար AI, ֆինտեխ և ձեռնարկությունների համակարգերում:">
+                An invitation-only collective of senior Armenian engineers, architects, and technical leaders. Built on 4,000 years of resilience. Trusted for foundational expertise in AI, fintech, and enterprise systems.
+            </p>
+            
+            <div class="cta-section">
+                <button class="cta-button cta-talent" id="talentBtn" data-eng="For Elite Talent →" data-arm="Էլիտար Մասնագետների Համար →">
+                    For Elite Talent →
+                </button>
+                <button class="cta-button cta-company" id="companyBtn" data-eng="For Companies →" data-arm="Ընկերությունների Համար →">
+                    For Companies →
+                </button>
+            </div>
+        </section>
+
+        <!-- Value Propositions -->
+        <section class="values-section">
+            <div class="value-card">
+                <div class="value-icon">🦅</div>
+                <h3 class="value-title" data-eng="The Araratian Standard" data-arm="Հարարատյան Ստանդարտ">
+                    The Araratian Standard
+                </h3>
+                <p class="value-description" data-eng="A badge of honor representing unshakable expertise, problem-solving resilience, and collaborative genius inherited through generations of technical excellence." data-arm="Պատվի նշան, որը ներկայացնում է անսասան փորձաքննություն, խնդիրների լուծման դիմացկունություն և համագործակցային հանճար, ժառանգված տեխնիկական գերազանցության սերունդների միջոցով:">
+                    A badge of honor representing unshakable expertise, problem-solving resilience, and collaborative genius inherited through generations of technical excellence.
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3 class="value-title" data-eng="The Trusted Collective" data-arm="Վստահելի Համայնք">
+                    The Trusted Collective
+                </h3>
+                <p class="value-description" data-eng="A peer-vetted network where opportunity and reputation are intertwined. Every member is endorsed by the community, ensuring only the most reliable talent." data-arm="Համաժամանակների կողմից ստուգված ցանց, որտեղ հնարավորությունը և համբավը միահյուսված են: Յուրաքանչյուր անդամ հաստատվում է համայնքի կողմից՝ ապահովելով միայն ամենահուսալի տաղանդը:">
+                    A peer-vetted network where opportunity and reputation are intertwined. Every member is endorsed by the community, ensuring only the most reliable talent.
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">🏔️</div>
+                <h3 class="value-title" data-eng="Beyond Recruitment" data-arm="Դուրս Գտնվելով Գրանցումից">
+                    Beyond Recruitment
+                </h3>
+                <p class="value-description" data-eng="This is access to a legacy. Partner with professionals for whom engineering excellence is a cultural heritage, not just a profession." data-arm="Սա ժառանգության հասանելիություն է: Գործընկերավարվեք մասնագետների հետ, ում համար ինժեներական գերազանցությունը մշակութային ժառանգություն է, ոչ միայն մասնագիտություն:">
+                    This is access to a legacy. Partner with professionals for whom engineering excellence is a cultural heritage, not just a profession.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Collective Section -->
+        <section class="collective-section">
+            <h2 class="section-title" data-eng="The Araratian Collective" data-arm="Հարարատյան Համայնք">
+                The Araratian Collective
+            </h2>
+            <p class="section-subtitle" data-eng="A curated selection of our members. Each has passed rigorous peer review and embodies the Araratian Standard of excellence." data-arm="Մեր անդամների ընտրված ընտրությունը: Յուրաքանչյուրն անցել է խիստ համաժամանակների ստուգում և մարմնավորում է Հարարատյան գերազանցության ստանդարտը:">
+                A curated selection of our members. Each has passed rigorous peer review and embodies the Araratian Standard of excellence.
+            </p>
+
+            <div class="profile-grid" id="profileGrid">
+                <!-- Profiles will be generated by JavaScript -->
+            </div>
+
+            <div class="access-note" data-eng="Access to the Araratian Collective is by invitation or application review only. Join our waitlist to be considered for membership or collaboration opportunities." data-arm="Հարարատյան Համայնքի հասանելիությունը միայն հրավերով կամ դիմումի ստուգմամբ է: Միացեք մեր սպասման ցուցակին՝ անդամակցության կամ համագործակցության հնարավորություններ համար:">
+                Access to the Araratian Collective is by invitation or application review only. Join our waitlist to be considered for membership or collaboration opportunities.
+            </div>
+        </section>
+    </div>
+
+    <!-- Talent Waitlist Modal -->
+    <div class="modal" id="talentModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeTalentModal">&times;</span>
+            <h3 class="form-title" data-eng="Join the Collective" data-arm="Միացեք Համայնքին">
+                Join the Collective
+            </h3>
+            <p class="form-subtitle" data-eng="Express your interest in becoming part of the Araratian guild. We're looking for Principal Engineers, Lead Architects, and senior technical leaders with 10+ years of experience." data-arm="Արտահայտեք ձեր հետաքրքրությունը Հարարատյան գիլդիայի մաս կազմելու համար: Մենք փնտրում ենք գլխավոր ինժեներներ, առաջատար ճարտարապետներ և ավագ տեխնիկական ղեկավարներ 10+ տարվա փորձով:">
+                Express your interest in becoming part of the Araratian guild. We're looking for Principal Engineers, Lead Architects, and senior technical leaders with 10+ years of experience.
+            </p>
+
+            <form id="talentForm">
+                <div class="form-group">
+                    <label class="form-label" for="talentName" data-eng="Full Name" data-arm="Ամբողջական Անուն">
+                        Full Name
+                    </label>
+                    <input class="form-input" type="text" id="talentName" name="name" required placeholder="Alex Martirosyan">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="talentEmail" data-eng="Email Address" data-arm="Էլփոստի Հասցե">
+                        Email Address
+                    </label>
+                    <input class="form-input" type="email" id="talentEmail" name="email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="talentRole" data-eng="Current Role / Title" data-arm="Ընթացիկ Պաշտոն / Կոչում">
+                        Current Role / Title
+                    </label>
+                    <input class="form-input" type="text" id="talentRole" name="role" required placeholder="Principal Engineer, Lead Architect, CTO">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="talentExperience" data-eng="Years of Experience" data-arm="Փորձի Տարիներ">
+                        Years of Experience
+                    </label>
+                    <select class="form-input" id="talentExperience" name="experience" required>
+                        <option value="">Select experience level</option>
+                        <option value="5-10">5-10 years</option>
+                        <option value="10-15">10-15 years</option>
+                        <option value="15+">15+ years</option>
+                    </select>
+                </div>
+                <button class="submit-btn" type="submit" data-eng="Join Talent Waitlist" data-arm="Միանալ Տաղանդի Սպասման Ցուցակին">
+                    Join Talent Waitlist
+                </button>
+            </form>
+            <div class="success-message" id="talentSuccess" data-eng="Thank you for your interest in the Araratian Collective! We'll review your information and contact you within 5 business days." data-arm="Շնորհակալություն Հարարատյան Համայնքում հետաքրքրություն ցուցաբերելու համար: Մենք կվերանայենք ձեր տվյալները և կկապվենք ձեզ հետ 5 աշխատանքային օրվա ընթացքում:">
+                Thank you for your interest in the Araratian Collective! We'll review your information and contact you within 5 business days.
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Waitlist Modal -->
+    <div class="modal" id="companyModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCompanyModal">&times;</span>
+            <h3 class="form-title" data-eng="Access Foundational Talent" data-arm="Մուտք Հիմնարար Տաղանդին">
+                Access Foundational Talent
+            </h3>
+            <p class="form-subtitle" data-eng="Share your project needs. We connect companies with elite Armenian technical minds for critical initiatives in fintech, AI, and enterprise software." data-arm="Կիսվեք ձեր նախագծի կարիքներով: Մենք կապում ենք ընկերությունները հայկական էլիտար տեխնիկական մտքի հետ ֆինտեխի, AI-ի և ձեռնարկությունների ծրագրավորման կարևոր նախաձեռնությունների համար:">
+                Share your project needs. We connect companies with elite Armenian technical minds for critical initiatives in fintech, AI, and enterprise software.
+            </p>
+
+            <form id="companyForm">
+                <div class="form-group">
+                    <label class="form-label" for="companyContact" data-eng="Contact Name" data-arm="Կոնտակտային Անուն">
+                        Contact Name
+                    </label>
+                    <input class="form-input" type="text" id="companyContact" name="contact_name" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="companyEmail" data-eng="Work Email" data-arm="Աշխատանքային Էլփոստ">
+                        Work Email
+                    </label>
+                    <input class="form-input" type="email" id="companyEmail" name="email" required placeholder="name@company.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="companyName" data-eng="Company" data-arm="Ընկերություն">
+                        Company
+                    </label>
+                    <input class="form-input" type="text" id="companyName" name="company" required placeholder="Company name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="companyProject" data-eng="Project Type / Need" data-arm="Նախագծի Տեսակ / Կարիք">
+                        Project Type / Need
+                    </label>
+                    <select class="form-input" id="companyProject" name="project_type" required>
+                        <option value="">Select project type</option>
+                        <option value="AI/ML">Artificial Intelligence / Machine Learning</option>
+                        <option value="Fintech">Fintech / Financial Systems</option>
+                        <option value="Enterprise">Enterprise Software / Architecture</option>
+                        <option value="Infrastructure">Technical Infrastructure / DevOps</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button class="submit-btn" type="submit" data-eng="Join Company Waitlist" data-arm="Միանալ Ընկերության Սպասման Ցուցակին">
+                    Join Company Waitlist
+                </button>
+            </form>
+            <div class="success-message" id="companySuccess" data-eng="Thank you! We've received your request and will contact you within 3 business days to discuss your talent needs and project requirements." data-arm="Շնորհակալություն: Մենք ստացել ենք ձեր հարցումը և կկապվենք ձեզ հետ 3 աշխատանքային օրվա ընթացքում՝ քննարկելու ձեր տաղանդի կարիքները և նախագծի պահանջները:">
+                Thank you! We've received your request and will contact you within 3 business days to discuss your talent needs and project requirements.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Araratian</div>
+        <div class="footer-tagline" data-eng="The Guild of Resilient Technical Genius | Connecting Armenian excellence with global impact" data-arm="Դիմացկուն Տեխնիկական Հանճարի Գիլդիա | Միացնելով հայկական գերազանցությունը համաշխարհային ազդեցության հետ">
+            The Guild of Resilient Technical Genius | Connecting Armenian excellence with global impact
+        </div>
+        <p data-eng="© 2025 Araratian Collective. An invitation-only guild built on 4,000 years of Armenian resilience and technical excellence." data-arm="© 2025 Հարարատյան Համայնք: Հրավիրանքով միություն, կառուցված հայկական 4000 տարվա դիմացկունության և տեխնիկական գերազանցության վրա:">
+            © 2025 Araratian Collective. An invitation-only guild built on 4,000 years of Armenian resilience and technical excellence.
+        </p>
+    </footer>
+
+    <script>
+        // Language management
+        let currentLang = 'eng';
+        const langEngBtn = document.getElementById('langEng');
+        const langArmBtn = document.getElementById('langArm');
+        
+        // Toggle language
+        function toggleLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langEngBtn.classList.toggle('active', lang === 'eng');
+            langArmBtn.classList.toggle('active', lang === 'arm');
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-eng]').forEach(element => {
+                if (lang === 'eng') {
+                    if (element.hasAttribute('data-eng')) {
+                        element.innerHTML = element.getAttribute('data-eng');
+                    }
+                } else if (lang === 'arm') {
+                    if (element.hasAttribute('data-arm')) {
+                        element.innerHTML = element.getAttribute('data-arm');
+                    }
+                }
+            });
+            
+            // Update page direction for Armenian
+            document.documentElement.dir = lang === 'arm' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang === 'arm' ? 'hy' : 'en';
+        }
+        
+        // Event listeners for language buttons
+        langEngBtn.addEventListener('click', () => toggleLanguage('eng'));
+        langArmBtn.addEventListener('click', () => toggleLanguage('arm'));
+        
+        // Enhanced profile data with Armenian
+        const profiles = [
+            { 
+                name: "Արամ Ս.", 
+                nameEng: "Aram S.",
+                title: "Principal AI/ML Engineer", 
+                titleArm: "Գլխավոր AI/ML Ինժեներ",
+                skills: ["Machine Learning", "TensorFlow", "PyTorch", "Computer Vision", "LLMs"],
+                skillsArm: ["Մեքենական ուսուցում", "TensorFlow", "PyTorch", "Համակարգչային տեսողություն", "LLMs"]
+            },
+            { 
+                name: "Անի Վ.", 
+                nameEng: "Ani V.",
+                title: "Lead Cloud Architect", 
+                titleArm: "Առաջատար Cloud Ճարտարապետ",
+                skills: ["AWS", "Kubernetes", "Microservices", "DevOps", "Terraform"],
+                skillsArm: ["AWS", "Kubernetes", "Միկրոսերվիսներ", "DevOps", "Terraform"]
+            },
+            { 
+                name: "Տիգրան Մ.", 
+                nameEng: "Tigran M.",
+                title: "Distributed Systems Expert", 
+                titleArm: "Բաշխված Համակարգերի Մասնագետ",
+                skills: ["Go", "Scalability", "Real-time Systems", "Apache Kafka", "Database Design"],
+                skillsArm: ["Go", "Մասշտաբայնություն", "Իրական ժամանակի համակարգեր", "Apache Kafka", "Տվյալների բազայի դիզայն"]
+            },
+            { 
+                name: "Լիլիթ Ա.", 
+                nameEng: "Lilit A.",
+                title: "CTO & Tech Strategy", 
+                titleArm: "CTO & Տեխնիկական Ռազմավարություն",
+                skills: ["Technical Leadership", "FinTech", "Product Architecture", "Team Building", "Scalable Startups"],
+                skillsArm: ["Տեխնիկական Ղեկավարություն", "FinTech", "Ապրանքի Ճարտարապետություն", "Թիմի կառուցում", "Մասշտաբավորվող Սթարտափներ"]
+            },
+            { 
+                name: "Դավիթ Կ.", 
+                nameEng: "David K.",
+                title: "Senior Security Engineer", 
+                titleArm: "Ավագ Անվտանգության Ինժեներ",
+                skills: ["Cybersecurity", "AppSec", "Zero-Trust", "Penetration Testing", "Blockchain"],
+                skillsArm: ["Քիբերանվտանգություն", "AppSec", "Զրո-վստահություն", "Պենետրացիոն թեստավորում", "Բլոկչեյն"]
+            },
+            { 
+                name: "Նարինե Հ.", 
+                nameEng: "Narine H.",
+                title: "Principal Data Engineer", 
+                titleArm: "Գլխավոր Տվյալների Ինժեներ",
+                skills: ["Data Pipelines", "Apache Spark", "Snowflake", "Big Data", "Data Modeling"],
+                skillsArm: ["Տվյալների խողովակաշարեր", "Apache Spark", "Snowflake", "Մեծ Տվյալներ", "Տվյալների մոդելավորում"]
+            }
+        ];
+
+        // Generate profile cards
+        function generateProfiles() {
+            const profileGrid = document.getElementById('profileGrid');
+            profileGrid.innerHTML = '';
+            
+            profiles.forEach(profile => {
+                const skills = currentLang === 'arm' ? profile.skillsArm : profile.skills;
+                const name = currentLang === 'arm' ? profile.name : profile.nameEng;
+                const title = currentLang === 'arm' ? profile.titleArm : profile.title;
+                
+                const skillsHtml = skills.map(skill => 
+                    `<span class="skill-tag">${skill}</span>`
+                ).join('');
+
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.innerHTML = `
+                    <div class="profile-badge" data-eng="Araratian Member" data-arm="Հարարատյան Անդամ">
+                        ${currentLang === 'arm' ? 'Հարարատյան Անդամ' : 'Araratian Member'}
+                    </div>
+                    <div class="profile-name">${name}</div>
+                    <div class="profile-title">${title}</div>
+                    <div class="profile-skills">${skillsHtml}</div>
+                `;
+                profileGrid.appendChild(card);
+            });
+        }
+
+        // DOM Elements
+        const talentBtn = document.getElementById('talentBtn');
+        const companyBtn = document.getElementById('companyBtn');
+        const talentModal = document.getElementById('talentModal');
+        const companyModal = document.getElementById('companyModal');
+        const closeTalentModal = document.getElementById('closeTalentModal');
+        const closeCompanyModal = document.getElementById('closeCompanyModal');
+        const talentForm = document.getElementById('talentForm');
+        const companyForm = document.getElementById('companyForm');
+        const talentSuccess = document.getElementById('talentSuccess');
+        const companySuccess = document.getElementById('companySuccess');
+
+        // Modal Functions
+        function openModal(modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners
+        talentBtn.addEventListener('click', () => openModal(talentModal));
+        companyBtn.addEventListener('click', () => openModal(companyModal));
+
+        closeTalentModal.addEventListener('click', () => closeModal(talentModal));
+        closeCompanyModal.addEventListener('click', () => closeModal(companyModal));
+
+        // Close modal when clicking outside content
+        window.addEventListener('click', (event) => {
+            if (event.target === talentModal) closeModal(talentModal);
+            if (event.target === companyModal) closeModal(companyModal);
+        });
+
+        // Form Submission Handlers
+        talentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!talentForm.checkValidity()) {
+                alert(currentLang === 'arm' ? 'Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը:' : 'Please fill in all required fields.');
+                return;
+            }
+
+            // Get Formspree endpoint (replace with your actual Formspree ID)
+            const formspreeEndpoint = 'https://formspree.io/f/{your-form-id-for-talent}';
+            
+            // Prepare form data
+            const formData = new FormData(talentForm);
+            formData.append('_language', currentLang);
+            formData.append('_subject', `Araratian Talent Waitlist - ${formData.get('name')}`);
+            
+            // Show success message
+            talentForm.style.display = 'none';
+            talentSuccess.style.display = 'block';
+            
+            // In production, you would send to Formspree
+            /*
+            try {
+                const response = await fetch(formspreeEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    talentForm.style.display = 'none';
+                    talentSuccess.style.display = 'block';
+                }
+            } catch (error) {
+                alert('Submission error. Please try again.');
+            }
+            */
+            
+            // Reset after 4 seconds
+            setTimeout(() => {
+                talentForm.reset();
+                talentForm.style.display = 'block';
+                talentSuccess.style.display = 'none';
+                closeModal(talentModal);
+            }, 4000);
+        });
+
+        companyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!companyForm.checkValidity()) {
+                alert(currentLang === 'arm' ? 'Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը:' : 'Please fill in all required fields.');
+                return;
+            }
+
+            // Get Formspree endpoint (replace with your actual Formspree ID)
+            const formspreeEndpoint = 'https://formspree.io/f/xreebyll';
+            
+            // Prepare form data
+            const formData = new FormData(companyForm);
+            formData.append('_language', currentLang);
+            formData.append('_subject', `Araratian Company Inquiry - ${formData.get('company')}`);
+            
+            companyForm.style.display = 'none';
+            companySuccess.style.display = 'block';
+            
+            // Reset after 4 seconds
+            setTimeout(() => {
+                companyForm.reset();
+                companyForm.style.display = 'block';
+                companySuccess.style.display = 'none';
+                closeModal(companyModal);
+            }, 4000);
+        });
+
+        // Initialize page
+        generateProfiles();
+        
+        // Update profiles when language changes
+        langEngBtn.addEventListener('click', generateProfiles);
+        langArmBtn.addEventListener('click', generateProfiles);
+
+        // Console welcome message
+        console.log('%c🦅 Araratian Collective', 'color: #ec4848; font-size: 20px; font-weight: bold;');
+        console.log('%cThe Guild of Resilient Technical Genius', 'color: #0a3069; font-size: 16px;');
+        console.log('%cBilingual Smoke Test Page Loaded | Mount Ararat Edition', 'color: #4a7b5e;');
+    </script>
+</body>
+</html>
