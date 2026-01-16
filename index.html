@@ -622,7 +622,7 @@
             
             <div class="value-card">
                 <div class="value-icon">🏔️</div>
-                <h3 class="value-title" data-eng="Beyond Recruitment" data-arm="Դուրս Գտնվելով Գրանցումից">
+                <h3 class="value-title" data-eng="Beyond Recruitment" data-arm="Դուրս Գտնվելով Ընդունելությունից">
                     Beyond Recruitment
                 </h3>
                 <p class="value-description" data-eng="This is access to a legacy. Partner with professionals for whom engineering excellence is a cultural heritage, not just a profession." data-arm="Սա ժառանգության հասանելիություն է: Գործընկերավարվեք մասնագետների հետ, ում համար ինժեներական գերազանցությունը մշակութային ժառանգություն է, ոչ միայն մասնագիտություն:">
@@ -661,7 +661,7 @@
                 Express your interest in becoming part of the Araratian guild. We're looking for Principal Engineers, Lead Architects, and senior technical leaders with 10+ years of experience.
             </p>
 
-            <form id="talentForm">
+            <form id="talentForm" action="https://formspree.io/f/mbddlzzy" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="talentName" data-eng="Full Name" data-arm="Ամբողջական Անուն">
                         Full Name
@@ -712,7 +712,7 @@
                 Share your project needs. We connect companies with elite Armenian technical minds for critical initiatives in fintech, AI, and enterprise software.
             </p>
 
-            <form id="companyForm">
+            <form id="companyForm" action="https://formspree.io/f/xreebyll" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="companyContact" data-eng="Contact Name" data-arm="Կոնտակտային Անուն">
                         Contact Name
@@ -916,82 +916,35 @@
             if (event.target === companyModal) closeModal(companyModal);
         });
 
-        // Form Submission Handlers
+        // Form Submission Handlers - SIMPLIFIED TO LET FORMS SUBMIT NATURALLY
         talentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+            // Let the form submit naturally to Formspree
+            // Formspree will handle the submission and redirect
+            // We'll just show a success message immediately for better UX
             
             if (!talentForm.checkValidity()) {
+                e.preventDefault();
                 alert(currentLang === 'arm' ? 'Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը:' : 'Please fill in all required fields.');
                 return;
             }
-
-            // Get Formspree endpoint (replace with your actual Formspree ID)
-            const formspreeEndpoint = 'https://formspree.io/f/mbddlzzy';
             
-            // Prepare form data
-            const formData = new FormData(talentForm);
-            formData.append('_language', currentLang);
-            formData.append('_subject', `Araratian Talent Waitlist - ${formData.get('name')}`);
-            
-            // Show success message
+            // Show immediate feedback
             talentForm.style.display = 'none';
             talentSuccess.style.display = 'block';
             
-            // In production, you would send to Formspree
-            /*
-            try {
-                const response = await fetch(formspreeEndpoint, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    talentForm.style.display = 'none';
-                    talentSuccess.style.display = 'block';
-                }
-            } catch (error) {
-                alert('Submission error. Please try again.');
-            }
-            */
-            
-            // Reset after 4 seconds
-            setTimeout(() => {
-                talentForm.reset();
-                talentForm.style.display = 'block';
-                talentSuccess.style.display = 'none';
-                closeModal(talentModal);
-            }, 4000);
+            // The form will continue submitting to Formspree in the background
+            // Formspree will handle the actual submission
         });
 
         companyForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
             if (!companyForm.checkValidity()) {
+                e.preventDefault();
                 alert(currentLang === 'arm' ? 'Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը:' : 'Please fill in all required fields.');
                 return;
             }
-
-            // Get Formspree endpoint (replace with your actual Formspree ID)
-            const formspreeEndpoint = 'https://formspree.io/f/xreebyll';
-            
-            // Prepare form data
-            const formData = new FormData(companyForm);
-            formData.append('_language', currentLang);
-            formData.append('_subject', `Araratian Company Inquiry - ${formData.get('company')}`);
             
             companyForm.style.display = 'none';
             companySuccess.style.display = 'block';
-            
-            // Reset after 4 seconds
-            setTimeout(() => {
-                companyForm.reset();
-                companyForm.style.display = 'block';
-                companySuccess.style.display = 'none';
-                closeModal(companyModal);
-            }, 4000);
         });
 
         // Initialize page
@@ -1004,7 +957,8 @@
         // Console welcome message
         console.log('%c🦅 Araratian Collective', 'color: #ec4848; font-size: 20px; font-weight: bold;');
         console.log('%cThe Guild of Resilient Technical Genius', 'color: #0a3069; font-size: 16px;');
-        console.log('%cBilingual Smoke Test Page Loaded | Mount Ararat Edition', 'color: #4a7b5e;');
+        console.log('%cBilingual Smoke Test Page Loaded | Forms Fixed | Mount Ararat Edition', 'color: #4a7b5e;');
+        console.log('%cForms will submit to Formspree successfully', 'color: #4a7b5e;');
     </script>
 </body>
 </html>
